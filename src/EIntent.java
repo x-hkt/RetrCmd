@@ -1,7 +1,7 @@
 import java.util.Arrays;
 import java.util.List;
 
-public class EIntent {
+public class EIntent implements GeneralizedAction {
 	private final List<IntentComponent> items;
 
 	public Intent(IntentComponent... itemsgiven) {
@@ -17,6 +17,12 @@ public class EIntent {
 	public List<IntentComponent> getIntentComponents() {
 		this.checkForConflicts();
 		return this.items;
+	}
+
+	public void invoke() {
+		for (IntentComponent component : this.items) {
+			component.invoke();
+		}
 	}
 
 	public void checkForConflicts() {
