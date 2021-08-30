@@ -1,4 +1,4 @@
 @FunctionalInterface
 public interface VarargFunction<T, R> {
-	public R apply(T... args);
+	public R r(T... args);
 }
