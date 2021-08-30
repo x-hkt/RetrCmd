@@ -26,7 +26,11 @@ public class EIntent implements GeneralizedAction {
 	}
 
 	public void checkForConflicts() {
-		////TODO
+		List<ISub> alreadySeen = new List<Isub>();
+		for (IntentComponent component : this.items) {
+			for (ISub tocheckagainst)
+			alreadySeen.add((ISub) component.getSub());
+		}
 	}
 
 	public static <T extends ISub> IntentComponent<T> component(
