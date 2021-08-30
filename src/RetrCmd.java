@@ -23,7 +23,15 @@ public abstract /*WRAPPER*/ class RetrCmd<Q> extends CommandBase {
 	
 	@Override
 	public void execute(boolean interrupted) {
-		////TODO
+		Pair<Optional<Q>, Optional<EIntent>> pair_stateq_outq =
+			cmd.get(this.cmdState);
+		Optional<Q> stateq = pair_stateq_outq.getFst();
+		Optional<EIntent> outq = pair_stateq_outq.getSnd();
+		if (!stateq.isPresent()) {
+			this.cmdIsFinished = true;
+		}
+		this.cmdState = state;
+		outq.ifPresent(x -> x.invoke());
 	}
 	
 	@Override
