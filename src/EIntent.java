@@ -30,7 +30,12 @@ public class EIntent implements GeneralizedAction {
 		List<ISub> alreadySeen = new List<ISub>();
 		for (IntentComponent component : this.items) {
 			for (ISub toCheckAgainst : alreadySeen) {
-				if (component.getSub().hasSameTarget(toCheckAgainst)) {
+				if (
+					component
+						.getSub()
+						.identifyTarget()
+						.equals(toCheckAgainst.identifyTarget())
+				) {
 					throw new EIntentConfictException(
 						component.getSub().getClass().getName(),
 						toCheckAgaints.getClass().getName()
