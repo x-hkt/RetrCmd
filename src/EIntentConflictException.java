@@ -1,3 +1,5 @@
+import java.util.Map;
+
 public class EIntentConflictException extends Exception {
 	public EIntentConflictException(
 		String classname1, String classname2,
