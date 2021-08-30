@@ -1,3 +1,5 @@
+import java.util.function.Consumer;
+
 public class IntentComponent<T extends ISub> implements GeneralizedAction {
 	private final T sub;
 	private final Consumer<? super T> consumer;
