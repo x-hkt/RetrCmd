@@ -38,7 +38,9 @@ public class EIntent implements GeneralizedAction {
 				) {
 					throw new EIntentConfictException(
 						component.getSub().getClass().getName(),
-						toCheckAgaints.getClass().getName()
+						toCheckAgainst.getClass().getName(),
+						component.getSub().identifyTarget(),
+						toCheckAgainst.identifyTarget()
 					);
 				}
 			}
