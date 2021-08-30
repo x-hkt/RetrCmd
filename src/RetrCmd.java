@@ -1,19 +1,21 @@
 import java.util.Optional;
 
-public class RetrCmd<Q> extends CommandBase {
+public abstract /*WRAPPER*/ class RetrCmd<Q> extends CommandBase {
 	private final Retr<Q, EIntent> cmd;
 	private Optional<Q> cmdState;
 	private boolean cmdIsFinished;
+	private ISub[] subs;
 	private final boolean isAuto;
 	
 	public RetrCmd(boolean isAuto, Retr<Q, EIntent> cmd, ISub... subs) {
 		this.cmd = cmd;
 		this.cmdState = Optional.empty();
 		this.cmdIsFinished = false;
-		for (ISub sub : subs) {
+		this.subs = subs;
+		this.isAuto = isAuto;
+		for (ISub sub : this.subs) {
 			addRequirements(sub);
 		}
-		this.isAuto = isAuto;
 	}
 	
 	@Override
