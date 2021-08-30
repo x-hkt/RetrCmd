@@ -1,11 +1,14 @@
+import java.util.Optional;
+
 public class RetrCmd<Q> extends CommandBase {
 	private final Retr<Q, EIntent> cmd;
-	private Q cmdState;
+	private Optional<Q> cmdState;
 	private boolean cmdIsFinished;
 	private final boolean isAuto;
 	
-	public RetrCmd(boolean isAuto, Retr<?, EIntent> cmd, ISub... subs) {
+	public RetrCmd(boolean isAuto, Retr<Q, EIntent> cmd, ISub... subs) {
 		this.cmd = cmd;
+		this.cmdState = Optional.empty();
 		this.cmdIsFinished = false;
 		for (ISub sub : subs) {
 			addRequirements(sub);
