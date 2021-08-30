@@ -1,7 +1,7 @@
 import java.util.Arrays;
 import java.util.function.BiFunction;
 
-public class Reduction<T> extends VarargFunction<T, T> {
+public class Reduction<T> implements VarargFunction<T, T> {
 	private final BiFunction<? super T, ? super T, ? extends T> accfn;
 
 	public Reduction(BiFunction<? super T, ? super T, ? extends T> accfn) {
