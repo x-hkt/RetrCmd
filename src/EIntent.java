@@ -26,9 +26,16 @@ public class EIntent implements GeneralizedAction {
 	}
 
 	public void checkForConflicts() {
-		List<ISub> alreadySeen = new List<Isub>();
+		List<ISub> alreadySeen = new List<ISub>();
 		for (IntentComponent component : this.items) {
-			for (ISub tocheckagainst)
+			for (ISub toCheckAgainst : alreadySeen) {
+				if (component.getSub().hasSameTarget(toCheckAgainst)) {
+					throw new EIntentConfictException(
+						component.getSub().getClass().getName(),
+						toCheckAgaints.getClass().getName()
+					);
+				}
+			}
 			alreadySeen.add((ISub) component.getSub());
 		}
 	}
