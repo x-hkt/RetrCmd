@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
@@ -37,7 +38,7 @@ public class EIntent implements GeneralizedAction {
 						.identifyTarget()
 						.equals(toCheckAgainst.identifyTarget())
 				) {
-					throw new EIntentConfictException(
+					throw new EIntentConflictException(
 						component.getSub().getClass().getName(),
 						toCheckAgainst.getClass().getName(),
 						component.getSub().identifyTarget(),
