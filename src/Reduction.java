@@ -9,8 +9,8 @@ public class Reduction<T> implements VarargFunction<T, T> {
 	}
 
 	public static <T1> Reduction<T1> of(
-		BiFunction<? super T1, ? super T1, ? extends T> accfnG
-	) { return new Reduction<T>(accfnG); }
+		BiFunction<? super T1, ? super T1, ? extends T1> accfnG
+	) { return new Reduction<T1>(accfnG); }
 
 	public T r(T... args) {
 		if (args.length == 0) {
@@ -20,7 +20,7 @@ public class Reduction<T> implements VarargFunction<T, T> {
 		} else if (args.length == 1) {
 			return args[0];
 		} else {
-			return accfn(
+			return accfn.apply(
 				args[0],
 				this.r(Arrays.copyOfRange(args, 1, args.length))
 			);
