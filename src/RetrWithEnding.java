@@ -16,9 +16,10 @@ public class RetrWithEnding<S> implements WithEndingFunction<EIntent, Retr<S, EI
 			stateq -> {
 				Pair<Optional<S>, Optional<EIntent>> pair_stateq_outq =
 					this.original.get(stateq);
+				Optional<EIntent> outq = pair_stateq_outq.getSnd();
 				return stateq.isPresent() ? pair_stateq_outq : new Pair<>(
 					Optional.empty(),
-					outq.map(y -> EIntent.cat(x, y)).orElse(x)
+					Optional.ofNullable(outq.map(y -> EIntent.cat(x, y)).orElse(x))
 				);
 			}
 		);
