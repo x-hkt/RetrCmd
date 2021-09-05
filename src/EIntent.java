@@ -1,16 +1,17 @@
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 public class EIntent implements GeneralizedAction {
 	private final List<IntentComponent> items;
 
-	public Intent(IntentComponent... itemsgiven) {
+	public EIntent(IntentComponent... itemsgiven) {
 		this.items = Arrays.asList(itemsgiven).stream().collect(Collectors.toList());
 		this.checkForConflicts();
 	}
 
-	public Intent(List<IntentComponent> itemsgiven) {
+	public EIntent(List<IntentComponent> itemsgiven) {
 		this.items = itemsgiven.stream().collect(Collectors.toList());
 		this.checkForConflicts();
 	}
