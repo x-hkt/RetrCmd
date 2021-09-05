@@ -29,25 +29,29 @@ public class EIntent implements GeneralizedAction {
 	}
 
 	public void checkForConflicts() {
-		List<ISub> alreadySeen = new ArrayList<ISub>();
-		for (IntentComponent component : this.items) {
-			for (ISub toCheckAgainst : alreadySeen) {
-				if (
-					component
-						.getSub()
-						.identifyTarget()
-						.equals(toCheckAgainst.identifyTarget())
-				) {
-					throw new EIntentConflictException(
-						component.getSub().getClass().getName(),
-						toCheckAgainst.getClass().getName(),
-						component.getSub().identifyTarget(),
-						toCheckAgainst.identifyTarget()
-					);
-				}
-			}
-			alreadySeen.add((ISub) component.getSub());
-		}
+	    try {
+    		List<ISub> alreadySeen = new ArrayList<ISub>();
+    		for (IntentComponent component : this.items) {
+    			for (ISub toCheckAgainst : alreadySeen) {
+    				if (
+    					component
+    						.getSub()
+    						.identifyTarget()
+    						.equals(toCheckAgainst.identifyTarget())
+    				) {
+    					throw new EIntentConflictException(
+    						component.getSub().getClass().getName(),
+    						toCheckAgainst.getClass().getName(),
+    						component.getSub().identifyTarget(),
+    						toCheckAgainst.identifyTarget()
+    					);
+    				}
+    			}
+    			alreadySeen.add((ISub) component.getSub());
+    		}
+	    } catch (Exception e) {
+	        System.out.println(e.getMessage());
+	    }
 	}
 
 	public static <T extends ISub> IntentComponent<T> component(
