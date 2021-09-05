@@ -1,3 +1,5 @@
+import java.util.Optional;
+
 public class RetrWithEnding<S> implements WithEndingFunction<EIntent, Retr<S, EIntent>> {
 	private final Retr<S, EIntent> original;
 
