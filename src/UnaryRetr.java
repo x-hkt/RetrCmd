@@ -1,3 +1,6 @@
+import java.util.Optional;
+import java.util.function.UnaryOperator;
+
 public class UnaryRetr<A> implements Retr<A, A> {
 	private final UnaryOperator<Optional<A>> unaryoperator;
 
